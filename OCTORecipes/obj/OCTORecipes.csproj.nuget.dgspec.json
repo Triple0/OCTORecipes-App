@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Olalekan\\Documents\\TechCareer\\capstone-project\\OCTORecipes-app\\OCTORecipes\\OCTORecipes.csproj": {}
+    "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Olalekan\\Documents\\TechCareer\\capstone-project\\OCTORecipes-app\\OCTORecipes\\OCTORecipes.csproj": {
+    "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Olalekan\\Documents\\TechCareer\\capstone-project\\OCTORecipes-app\\OCTORecipes\\OCTORecipes.csproj",
+        "projectUniqueName": "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
         "projectName": "OCTORecipes",
-        "projectPath": "C:\\Users\\Olalekan\\Documents\\TechCareer\\capstone-project\\OCTORecipes-app\\OCTORecipes\\OCTORecipes.csproj",
+        "projectPath": "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
         "packagesPath": "C:\\Users\\Olalekan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Olalekan\\Documents\\TechCareer\\capstone-project\\OCTORecipes-app\\OCTORecipes\\obj\\",
+        "outputPath": "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
