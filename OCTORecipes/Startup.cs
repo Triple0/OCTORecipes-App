@@ -31,13 +31,21 @@ namespace OCTORecipes
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-              .AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //  .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            
+            //Reconfigured my services to allow for the use of same ApplicationDbCOntext for both recipes and Identity DBs
+            // Source of resolving no service type registered error: https://donotpanic.azurewebsites.net/2019/03/25/asp-net-core-and-the-no-service-for-type-microsoft-aspnetcore-identity-signinmanager1microsoft-aspnetcore-identity-identityuser-has-been-registered-error/
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+                   .AddEntityFrameworkStores<ApplicationDbContext>()
+                   .AddDefaultTokenProviders()
+                   .AddDefaultUI();
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddMvc();
+
+            services.AddDbContext<OCTORecipesContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("OCTORecipesContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

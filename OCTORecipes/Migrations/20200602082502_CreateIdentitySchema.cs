@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;using System;
-
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OCTORecipes.Migrations
 {
@@ -41,9 +41,7 @@ namespace OCTORecipes.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(maxLength: 20, nullable: false),
-                    LastName = table.Column<string>(maxLength: 20, nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

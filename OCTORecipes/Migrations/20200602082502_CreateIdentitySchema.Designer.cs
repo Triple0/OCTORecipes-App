@@ -10,7 +10,7 @@ using OCTORecipes.Data;
 namespace OCTORecipes.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200602070800_CreateIdentitySchema")]
+    [Migration("20200602082502_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -176,16 +176,6 @@ namespace OCTORecipes.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");

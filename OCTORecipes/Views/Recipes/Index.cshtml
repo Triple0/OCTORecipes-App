@@ -1,0 +1,71 @@
+﻿@model IEnumerable<OCTORecipes.Models.Recipe>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RecipeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DishType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CookingInstructions)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RecipeDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodAllergies)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecipeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DishType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CookingInstructions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecipeDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodAllergies)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RecipeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RecipeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RecipeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
