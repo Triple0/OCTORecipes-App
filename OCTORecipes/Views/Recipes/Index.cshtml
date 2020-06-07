@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<OCTORecipes.Models.Recipe>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Recipe Page";
 }
 
-<h1>Index</h1>
+<h1>Recipes</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,25 +13,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RecipeName)
+                @Html.DisplayNameFor(model => model.RecipePicture)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FoodCategory)
+                @Html.DisplayNameFor(model => model.RecipeName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DishType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CookingInstructions)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.RecipeDescription)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FoodAllergies)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageId)
+                @Html.DisplayNameFor(model => model.Author)
             </th>
             <th></th>
         </tr>
@@ -40,30 +34,24 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.RecipeName)
+                <img src="@("~/images/"+item.RecipePicture)" alt="Recipe Image" height="50" width="50"/> 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FoodCategory)
+                @Html.DisplayFor(modelItem => item.RecipeName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DishType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CookingInstructions)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.RecipeDescription)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FoodAllergies)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RecipeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RecipeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RecipeId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.RecipeId">Edit Recipe</a> |
+                <a asp-action="Details" asp-route-id="@item.RecipeId">View Recipe Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RecipeId">Delete Recipe</a>
             </td>
         </tr>
 }

@@ -1,22 +1,30 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OCTORecipes.Data;
 using OCTORecipes.Models;
+using OCTORecipes.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
-namespace OCTORecipes.Controllers
+namespace OCTORecipes
 {
+    [Authorize]
     public class RecipesController : Controller
     {
         private readonly OCTORecipesContext _context;
+        private readonly IWebHostEnvironment webHostEnvironment;
+             
 
-        public RecipesController(OCTORecipesContext context)
+        public RecipesController(OCTORecipesContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            webHostEnvironment = hostEnvironment;
         }
 
         // GET: Recipes
@@ -54,16 +62,53 @@ namespace OCTORecipes.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RecipeId,RecipeName,FoodCategory,DishType,CookingInstructions,RecipeDescription,FoodAllergies,ImageId")] Recipe recipe)
+        public async Task<IActionResult> Create(RecipeViewModel model)//[Bind("RecipePicture,RecipeId,RecipeName,DishType,RecipeDescription,Ingredients,PreCookingPreparationMode,CookingPreparationMode,PostCookingPreparationMode,FoodAllergies,Symptoms,Antidote,Author")] Recipe recipe)
         {
             if (ModelState.IsValid)
             {
+                string uniqueFileName = UploadedFile(model);
+
+                Recipe recipe = new Recipe
+                {
+                    RecipePicture = uniqueFileName,
+                    RecipeId = model.RecipeId,
+                    RecipeName = model.RecipeName,
+                    DishType = model.DishType,
+                    RecipeDescription = model.RecipeDescription,
+                    Ingredients = model.Ingredients,
+                    PreCookingPreparationMode = model.PreCookingPreparationMode,
+                    CookingPreparationMode = model.CookingPreparationMode,
+                    PostCookingPreparationMode = model.PostCookingPreparationMode,
+                    FoodAllergies = model.FoodAllergies,
+                    Symptoms = model.Symptoms,
+                    Antidote = model.Antidote,
+                    Author = User.Identity.Name,
+                };
                 _context.Add(recipe);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(recipe);
+            return View();
         }
+
+        private string UploadedFile(RecipeViewModel model)
+        {
+            string uniqueFileName = null;
+
+            if (model.RecipeImage != null)
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.RecipeImage.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.RecipeImage.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
+
+        }
+
 
         // GET: Recipes/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -86,9 +131,13 @@ namespace OCTORecipes.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RecipeId,RecipeName,FoodCategory,DishType,CookingInstructions,RecipeDescription,FoodAllergies,ImageId")] Recipe recipe)
+        public async Task<IActionResult> Edit(int id, [Bind("RecipeImage,RecipeId,RecipeName,DishType,RecipeDescription,Ingredients,PreCookingPreparationMode,CookingPreparationMode,PostCookingPreparationMode,FoodAllergies,Symptoms,Antidote,Author")] RecipeViewModel model)
         {
-            if (id != recipe.RecipeId)
+
+            string Image = model.RecipeImage.ToString();
+            string uniqueFileName = UploadedFile(model);
+
+            if (id != model.RecipeId)
             {
                 return NotFound();
             }
@@ -97,12 +146,30 @@ namespace OCTORecipes.Controllers
             {
                 try
                 {
-                    _context.Update(recipe);
+                    //Extracting the substring used for comparison to determine deletion for existing image
+                    int startIndexOldImage = Image.IndexOf("_");
+                    int endIndexOldImage = Image.Length - startIndexOldImage;
+                    string imageNameOld = Image.Substring(startIndexOldImage,
+                        endIndexOldImage);
+
+                    //Extracting the substring used for comparison to determine deletion for new image
+                    int startIndexNewImage = Image.IndexOf("_");
+                    int endIndexNewImage = Image.Length - startIndexNewImage;
+                    string imageNameNew = Image.Substring(startIndexNewImage,
+                        endIndexNewImage);
+
+                    // Delete existing image when editing or loading a new image
+                    var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "images", Image);                    
+                    if (System.IO.File.Exists(imagePath) && imageNameNew == imageNameOld)
+                        System.IO.File.Delete(imagePath);
+
+                   
+                    _context.Update(model);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RecipeExists(recipe.RecipeId))
+                    if (!RecipeExists(model.RecipeId))
                     {
                         return NotFound();
                     }
@@ -113,7 +180,7 @@ namespace OCTORecipes.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(recipe);
+            return View(model);
         }
 
         // GET: Recipes/Delete/5
@@ -140,6 +207,13 @@ namespace OCTORecipes.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var recipe = await _context.Recipe.FindAsync(id);
+
+            //Deleting image from wwwroot/image
+            //refernce: http://www.codaffection.com/asp-net-core-article/asp-net-core-mvc-image-upload-and-retrieve/
+            var RecipeImage = recipe.RecipePicture;
+            var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "images", RecipeImage);
+            if (System.IO.File.Exists(imagePath))
+                System.IO.File.Delete(imagePath);
             _context.Recipe.Remove(recipe);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

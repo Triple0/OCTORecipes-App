@@ -3,20 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OCTORecipes.Models
+namespace OCTORecipes.ViewModels
 {
-    public class Recipe
+    public class RecipeViewModel
     {
-
         [DisplayName("Recipe Picture")]
-        [Required(ErrorMessage = "Please choose recipe image")]
-        public string RecipePicture { get; set; }
-        [NotMapped]
-        [DisplayName("Upload Recipe Picture")]
         [Required(ErrorMessage = "Please choose recipe image")]
         public IFormFile RecipeImage { get; set; }
         [Key]
@@ -66,6 +60,5 @@ namespace OCTORecipes.Models
         public string Antidote { get; set; }
         [DisplayName("Recipe's Author")]
         public string Author { get; set; }
-
     }
 }

@@ -1,4 +1,4 @@
-﻿@model OCTORecipes.Models.Recipe
+﻿@model OCTORecipes.ViewModels.RecipeViewModel;
 
 @{
     ViewData["Title"] = "Create";
@@ -10,17 +10,20 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RecipeImage" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="RecipeImage" class="custom-file-input" id="customFile" />
+                    <label class="custom-file-label">Upload Recipe Image</label>
+                </div>
+                <span asp-validation-for="RecipeImage" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="RecipeName" class="control-label"></label>
                 <input asp-for="RecipeName" class="form-control" />
                 <span asp-validation-for="RecipeName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FoodCategory" class="control-label"></label>
-                <input asp-for="FoodCategory" class="form-control" />
-                <span asp-validation-for="FoodCategory" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DishType" class="control-label"></label>
@@ -28,14 +31,29 @@
                 <span asp-validation-for="DishType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CookingInstructions" class="control-label"></label>
-                <input asp-for="CookingInstructions" class="form-control" />
-                <span asp-validation-for="CookingInstructions" class="text-danger"></span>
+                <label asp-for="RecipeDescription" class="control-label"></label>
+                <textarea asp-for="RecipeDescription" class="form-control"></textarea>
+                <span asp-validation-for="RecipeDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RecipeDescription" class="control-label"></label>
-                <input asp-for="RecipeDescription" class="form-control" />
-                <span asp-validation-for="RecipeDescription" class="text-danger"></span>
+                <label asp-for="Ingredients" class="control-label"></label>
+                <input asp-for="Ingredients" class="form-control" />
+                <span asp-validation-for="Ingredients" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PreCookingPreparationMode" class="control-label"></label>
+                <textarea asp-for="PreCookingPreparationMode" class="form-control"></textarea>
+                <span asp-validation-for="PreCookingPreparationMode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CookingPreparationMode" class="control-label"></label>
+                <textarea asp-for="CookingPreparationMode" class="form-control"></textarea>
+                <span asp-validation-for="CookingPreparationMode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostCookingPreparationMode" class="control-label"></label>
+                <textarea asp-for="PostCookingPreparationMode" class="form-control"></textarea>
+                <span asp-validation-for="PostCookingPreparationMode" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FoodAllergies" class="control-label"></label>
@@ -43,9 +61,19 @@
                 <span asp-validation-for="FoodAllergies" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ImageId" class="control-label"></label>
-                <input asp-for="ImageId" class="form-control" />
-                <span asp-validation-for="ImageId" class="text-danger"></span>
+                <label asp-for="Symptoms" class="control-label"></label>
+                <input asp-for="Symptoms" class="form-control" />
+                <span asp-validation-for="Symptoms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Antidote" class="control-label"></label>
+                <input asp-for="Antidote" class="form-control" />
+                <span asp-validation-for="Antidote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -60,4 +88,13 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+
+       // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+         });
+    </script>
 }
+
