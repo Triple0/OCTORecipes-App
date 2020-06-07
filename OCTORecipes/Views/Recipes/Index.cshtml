@@ -34,7 +34,8 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                <img src="@("~/images/"+item.RecipePicture)" alt="Recipe Image" height="50" width="50"/> 
+                <!--https://forums.asp.net/t/2147423.aspx?upload+and+display+image+from+database+for+asp+net+core+2+1+-->
+                <img src="@Url.Content("~/images/"+item.RecipePicture)" alt="Recipe Image" height="100" width="100" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RecipeName)
