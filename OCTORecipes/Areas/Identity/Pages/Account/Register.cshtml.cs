@@ -47,6 +47,11 @@ namespace OCTORecipes.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [Firstname]
+            [Display(Name = "Firstname")]
+            public string Firstname { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
