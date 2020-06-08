@@ -97,7 +97,7 @@ namespace OCTORecipes
 
             if (model.RecipeImage != null)
             {
-                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images", "recipe_images");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + model.RecipeImage.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
@@ -134,7 +134,8 @@ namespace OCTORecipes
         public async Task<IActionResult> Edit(int id, [Bind("RecipeImage,RecipeId,RecipeName,DishType,RecipeDescription,Ingredients,PreCookingPreparationMode,CookingPreparationMode,PostCookingPreparationMode,FoodAllergies,Symptoms,Antidote,Author")] RecipeViewModel model)
         {
 
-            string Image = model.RecipeImage.ToString();
+            var recipe = await _context.Recipe.FindAsync(id);
+            string Image = recipe.RecipePicture.ToString();
             string uniqueFileName = UploadedFile(model);
 
             if (id != model.RecipeId)
@@ -153,18 +154,18 @@ namespace OCTORecipes
                         endIndexOldImage);
 
                     //Extracting the substring used for comparison to determine deletion for new image
-                    int startIndexNewImage = Image.IndexOf("_");
-                    int endIndexNewImage = Image.Length - startIndexNewImage;
-                    string imageNameNew = Image.Substring(startIndexNewImage,
+                    int startIndexNewImage = uniqueFileName.IndexOf("_");
+                    int endIndexNewImage = uniqueFileName.Length - startIndexNewImage;
+                    string imageNameNew = uniqueFileName.Substring(startIndexNewImage,
                         endIndexNewImage);
 
                     // Delete existing image when editing or loading a new image
                     var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "images", Image);                    
-                    if (System.IO.File.Exists(imagePath) && imageNameNew == imageNameOld)
+                    if (System.IO.File.Exists(imagePath) && imageNameNew != imageNameOld)
                         System.IO.File.Delete(imagePath);
 
                    
-                    _context.Update(model);
+                    _context.Update(recipe);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
