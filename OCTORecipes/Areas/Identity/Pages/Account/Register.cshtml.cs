@@ -48,8 +48,8 @@ namespace OCTORecipes.Areas.Identity.Pages.Account
         {
             [Required]
             [Firstname]
-            [Display(Name = "Firstname")]
-            public string Firstname { get; set; }
+            [Display(Name = "Author")]
+            public string Author { get; set; }
 
             [Required]
             [EmailAddress]
