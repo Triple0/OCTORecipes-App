@@ -28,9 +28,18 @@ namespace OCTORecipes
         }
 
         // GET: Recipes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchParameter)
         {
-            return View(await _context.Recipe.ToListAsync());
+            //return View(await _context.Recipe.ToListAsync());
+            var recipe = from item in _context.Recipe
+                         select item;
+
+            if (!String.IsNullOrEmpty(searchParameter))
+            {
+                recipe = recipe.Where(s => s.RecipeName.Contains(searchParameter));
+            }
+
+            return View(await recipe.ToListAsync());
         }
 
         // GET: Recipes/Details/5
@@ -134,9 +143,8 @@ namespace OCTORecipes
         public async Task<IActionResult> Edit(int id, [Bind("RecipeImage,RecipeId,RecipeName,DishType,RecipeDescription,Ingredients,PreCookingPreparationMode,CookingPreparationMode,PostCookingPreparationMode,FoodAllergies,Symptoms,Antidote,Author")] RecipeViewModel model)
         {
 
-            var recipe = await _context.Recipe.FindAsync(id);
-            string Image = recipe.RecipePicture.ToString();
-            string uniqueFileName = UploadedFile(model);
+            var recipeContext = await _context.Recipe.FindAsync(id);
+            string Image = recipeContext.RecipePicture.ToString();            
 
             if (id != model.RecipeId)
             {
@@ -147,26 +155,19 @@ namespace OCTORecipes
             {
                 try
                 {
-                    //Extracting the substring used for comparison to determine deletion for existing image
-                    int startIndexOldImage = Image.IndexOf("_");
-                    int endIndexOldImage = Image.Length - startIndexOldImage;
-                    string imageNameOld = Image.Substring(startIndexOldImage,
-                        endIndexOldImage);
-
-                    //Extracting the substring used for comparison to determine deletion for new image
-                    int startIndexNewImage = uniqueFileName.IndexOf("_");
-                    int endIndexNewImage = uniqueFileName.Length - startIndexNewImage;
-                    string imageNameNew = uniqueFileName.Substring(startIndexNewImage,
-                        endIndexNewImage);
-
-                    // Delete existing image when editing or loading a new image
-                    var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "images", Image);                    
-                    if (System.IO.File.Exists(imagePath) && imageNameNew != imageNameOld)
-                        System.IO.File.Delete(imagePath);
-
                    
-                    _context.Update(recipe);
-                    await _context.SaveChangesAsync();
+
+                    string uniqueFileName = UploadedFile(model);                 
+                                                
+                                               
+                        _context.Update(model);
+                        await _context.SaveChangesAsync();
+                        
+                        // Deleting old image from file folder
+                        var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "images", "recipe_images", Image);
+                        if (System.IO.File.Exists(imagePath))
+                            System.IO.File.Delete(imagePath);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -212,7 +213,7 @@ namespace OCTORecipes
             //Deleting image from wwwroot/image
             //refernce: http://www.codaffection.com/asp-net-core-article/asp-net-core-mvc-image-upload-and-retrieve/
             var RecipeImage = recipe.RecipePicture;
-            var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "images", RecipeImage);
+            var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "images", "recipe_images", RecipeImage);
             if (System.IO.File.Exists(imagePath))
                 System.IO.File.Delete(imagePath);
             _context.Recipe.Remove(recipe);

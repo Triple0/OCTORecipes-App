@@ -7,9 +7,18 @@
 <h1>Recipes</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New Recipe</a>
 </p>
-<table class="table">
+
+<form asp-controller="Recipes" asp-action="Index" method="get">
+    <p>
+        Title: <input type="text" name="SearchParameter">
+        <input type="submit" value="Search" />
+    </p>
+</form>
+
+<div class="table-responsive">
+<table class="table table-striped table-sm">
     <thead>
         <tr>
             <th>
@@ -44,7 +53,9 @@
                 @Html.DisplayFor(modelItem => item.DishType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RecipeDescription)
+                <div style="width:80px; word-wrap: break-word">
+                    @Html.DisplayFor(modelItem => item.RecipeDescription)
+                </div>
             </td>            
             <td>
                 @Html.DisplayFor(modelItem => item.Author)
@@ -58,3 +69,4 @@
 }
     </tbody>
 </table>
+</div>
