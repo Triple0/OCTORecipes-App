@@ -47,7 +47,7 @@ namespace OCTORecipes.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [Firstname]
+            [Author]
             [Display(Name = "Author")]
             public string Author { get; set; }
 
