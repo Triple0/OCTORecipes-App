@@ -22,7 +22,7 @@ namespace OCTORecipes.ViewModels
         [Required(AllowEmptyStrings = false, ErrorMessage = "Name of Recipe is Required and no numbers allowed")]
         public string RecipeName { get; set; }
         [Required]
-        [DisplayName("Type of Dish (Canadian, Mexican, etc.)")]
+        [DisplayName("Type of Dish (Canadian, Nigerian, etc.)")]
         public string DishType { get; set; }
         [Required]
         [DisplayName("Description of Recipe")]
@@ -34,17 +34,17 @@ namespace OCTORecipes.ViewModels
         public string Ingredients { get; set; }
         [Required]
         [DisplayName("Pre Cooking Instructions")]
-        [StringLength(200, MinimumLength = 50)]
+        [StringLength(200, MinimumLength = 10)]
         [DataType(DataType.MultilineText)]
         public string PreCookingPreparationMode { get; set; }
         [Required]
         [DisplayName("Cooking Instructions")]
-        [StringLength(200, MinimumLength = 50)]
+        [StringLength(200, MinimumLength = 10)]
         [DataType(DataType.MultilineText)]
         public string CookingPreparationMode { get; set; }
         [Required]
         [DisplayName("Post Cooking Instructions/Serving")]
-        [StringLength(200, MinimumLength = 50)]
+        [StringLength(200, MinimumLength = 10)]
         [DataType(DataType.MultilineText)]
         public string PostCookingPreparationMode { get; set; }
         [DisplayName("Any Allergy Warning")]
