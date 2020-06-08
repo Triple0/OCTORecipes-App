@@ -73,6 +73,10 @@ namespace OCTORecipes
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "recipes",
+                    pattern: "Recipes/{*Index}",
+                    defaults: new { controller = "Recipes", action = "Index" });
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
