@@ -8932,23 +8932,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Olalekan\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Oluwa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
+      "projectUniqueName": "C:\\Users\\Oluwa\\Documents\\hotdocs\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
       "projectName": "OCTORecipes",
-      "projectPath": "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
-      "packagesPath": "C:\\Users\\Olalekan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\obj\\",
+      "projectPath": "C:\\Users\\Oluwa\\Documents\\hotdocs\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
+      "packagesPath": "C:\\Users\\Oluwa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Oluwa\\Documents\\hotdocs\\OCTORecipes-App\\OCTORecipes\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Olalekan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Oluwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
