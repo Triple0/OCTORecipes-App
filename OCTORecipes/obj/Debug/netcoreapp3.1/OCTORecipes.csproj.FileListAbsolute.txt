@@ -1297,3 +1297,4 @@ C:\Users\Ogokweli\Desktop\PROJECT\OCTORecipes-App\OCTORecipes\obj\Debug\netcorea
 C:\Users\Ogokweli\Desktop\PROJECT\OCTORecipes-App\OCTORecipes\obj\Debug\netcoreapp3.1\OCTORecipes.dll
 C:\Users\Ogokweli\Desktop\PROJECT\OCTORecipes-App\OCTORecipes\obj\Debug\netcoreapp3.1\OCTORecipes.pdb
 C:\Users\Ogokweli\Desktop\PROJECT\OCTORecipes-App\OCTORecipes\obj\Debug\netcoreapp3.1\OCTORecipes.genruntimeconfig.cache
+C:\Users\Ogokweli\Desktop\PROJECT\OCTORecipes-App\OCTORecipes\obj\Debug\netcoreapp3.1\OCTORecipes.csprojAssemblyReference.cache

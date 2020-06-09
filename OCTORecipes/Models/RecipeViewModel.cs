@@ -28,7 +28,7 @@ namespace OCTORecipes.ViewModels
         public string DishType { get; set; }
         [Required]
         [DisplayName("Description of Recipe")]
-        [StringLength(100, MinimumLength = 10)]
+        [StringLength(1000, MinimumLength = 10)]
         [DataType(DataType.MultilineText)]
         public string RecipeDescription { get; set; }
         [Required]
@@ -36,17 +36,17 @@ namespace OCTORecipes.ViewModels
         public string Ingredients { get; set; }
         [Required]
         [DisplayName("Pre Cooking Instructions")]
-        [StringLength(200, MinimumLength = 10)]
+        [StringLength(2000, MinimumLength = 10)]
         [DataType(DataType.MultilineText)]
         public string PreCookingPreparationMode { get; set; }
         [Required]
         [DisplayName("Cooking Instructions")]
-        [StringLength(200, MinimumLength = 10)]
+        [StringLength(20000, MinimumLength = 10)]
         [DataType(DataType.MultilineText)]
         public string CookingPreparationMode { get; set; }
         [Required]
         [DisplayName("Post Cooking Instructions/Serving")]
-        [StringLength(200, MinimumLength = 10)]
+        [StringLength(2000, MinimumLength = 10)]
         [DataType(DataType.MultilineText)]
         public string PostCookingPreparationMode { get; set; }
         [DisplayName("Any Allergy Warning")]
