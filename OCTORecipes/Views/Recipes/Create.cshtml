@@ -21,6 +21,11 @@
             <form asp-action="Create" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
+                    <label asp-for="Author" class="control-label"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <label asp-for="RecipeImage" class="control-label"></label>
                     <div class="custom-file">
                         <input asp-for="RecipeImage" class="custom-file-input" id="customFile" />
@@ -68,21 +73,7 @@
                     <input asp-for="FoodAllergies" class="form-control" />
                     <span asp-validation-for="FoodAllergies" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Symptoms" class="control-label"></label>
-                    <input asp-for="Symptoms" class="form-control" />
-                    <span asp-validation-for="Symptoms" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Antidote" class="control-label"></label>
-                    <input asp-for="Antidote" class="form-control" />
-                    <span asp-validation-for="Antidote" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Author" class="control-label"></label>
-                    <input asp-for="Author" class="form-control" />
-                    <span asp-validation-for="Author" class="text-danger"></span>
-                </div>
+
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
                 </div>

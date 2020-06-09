@@ -48,12 +48,6 @@ namespace OCTORecipes.Migrations.OCTORecipes
                 oldNullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "Antidote",
-                table: "Recipe",
-                maxLength: 60,
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
                 name: "Author",
                 table: "Recipe",
                 nullable: true);
@@ -61,7 +55,7 @@ namespace OCTORecipes.Migrations.OCTORecipes
             migrationBuilder.AddColumn<string>(
                 name: "CookingPreparationMode",
                 table: "Recipe",
-                maxLength: 200,
+                maxLength: 2000,
                 nullable: false,
                 defaultValue: "");
 
@@ -74,14 +68,14 @@ namespace OCTORecipes.Migrations.OCTORecipes
             migrationBuilder.AddColumn<string>(
                 name: "PostCookingPreparationMode",
                 table: "Recipe",
-                maxLength: 200,
+                maxLength: 2000,
                 nullable: false,
                 defaultValue: "");
 
             migrationBuilder.AddColumn<string>(
                 name: "PreCookingPreparationMode",
                 table: "Recipe",
-                maxLength: 200,
+                maxLength: 2000,
                 nullable: false,
                 defaultValue: "");
 
@@ -90,21 +84,10 @@ namespace OCTORecipes.Migrations.OCTORecipes
                 table: "Recipe",
                 nullable: false,
                 defaultValue: "");
-
-            migrationBuilder.AddColumn<string>(
-                name: "Symptoms",
-                table: "Recipe",
-                maxLength: 60,
-                nullable: true);
         }
-
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Antidote",
-                table: "Recipe");
-
-            migrationBuilder.DropColumn(
                 name: "Author",
                 table: "Recipe");
 
@@ -128,11 +111,7 @@ namespace OCTORecipes.Migrations.OCTORecipes
                 name: "RecipePicture",
                 table: "Recipe");
 
-            migrationBuilder.DropColumn(
-                name: "Symptoms",
-                table: "Recipe");
-
-            migrationBuilder.AlterColumn<string>(
+             migrationBuilder.AlterColumn<string>(
                 name: "RecipeName",
                 table: "Recipe",
                 type: "nvarchar(max)",
