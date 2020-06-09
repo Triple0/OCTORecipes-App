@@ -8937,11 +8937,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ogokweli\\Desktop\\PROJECT\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
+      "projectUniqueName": "C:\\Users\\Ogokweli\\Desktop\\New folder\\PROJECT\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
       "projectName": "OCTORecipes",
-      "projectPath": "C:\\Users\\Ogokweli\\Desktop\\PROJECT\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
+      "projectPath": "C:\\Users\\Ogokweli\\Desktop\\New folder\\PROJECT\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
       "packagesPath": "C:\\Users\\Ogokweli\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ogokweli\\Desktop\\PROJECT\\OCTORecipes-App\\OCTORecipes\\obj\\",
+      "outputPath": "C:\\Users\\Ogokweli\\Desktop\\New folder\\PROJECT\\OCTORecipes-App\\OCTORecipes\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ogokweli\\AppData\\Roaming\\NuGet\\NuGet.Config",
