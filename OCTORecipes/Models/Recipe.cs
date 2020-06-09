@@ -29,7 +29,7 @@ namespace OCTORecipes.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Name of Recipe is Required and no numbers allowed")]
         public string RecipeName { get; set; }
         [Required]
-        [DisplayName("Type of Dish (Canadian, Mexican, etc.")]
+        [DisplayName("Type of Dish (Canadian, Nigerian, etc.)")]
         public string DishType { get; set; }
         [Required]
         [DisplayName("Description of Recipe")]
