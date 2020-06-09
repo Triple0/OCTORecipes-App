@@ -6,13 +6,6 @@ namespace OCTORecipes.Migrations.OCTORecipes
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Antidote",
-                table: "Recipe");
-
-            migrationBuilder.DropColumn(
-                name: "Symptoms",
-                table: "Recipe");
 
             migrationBuilder.AlterColumn<string>(
                 name: "RecipeDescription",
@@ -89,19 +82,7 @@ namespace OCTORecipes.Migrations.OCTORecipes
                 oldClrType: typeof(string),
                 oldMaxLength: 2000);
 
-            migrationBuilder.AddColumn<string>(
-                name: "Antidote",
-                table: "Recipe",
-                type: "nvarchar(60)",
-                maxLength: 60,
-                nullable: true);
 
-            migrationBuilder.AddColumn<string>(
-                name: "Symptoms",
-                table: "Recipe",
-                type: "nvarchar(60)",
-                maxLength: 60,
-                nullable: true);
         }
     }
 }
