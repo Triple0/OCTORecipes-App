@@ -89,8 +89,6 @@ namespace OCTORecipes
                     CookingPreparationMode = model.CookingPreparationMode,
                     PostCookingPreparationMode = model.PostCookingPreparationMode,
                     FoodAllergies = model.FoodAllergies,
-                    Symptoms = model.Symptoms,
-                    Antidote = model.Antidote,
                     Author = User.Identity.Name,
                 };
                 _context.Add(recipe);

@@ -58,7 +58,7 @@ namespace OCTORecipes.ViewModels
         [StringLength(60, MinimumLength = 3)]
         [DataType(DataType.Text)]
         public string Antidote { get; set; }
-        [DisplayName("Recipe's Author")]
+        [DisplayName("Author")]
         public string Author { get; set; }
     }
 }
