@@ -41,7 +41,7 @@ namespace OCTORecipes.ViewModels
         public string PreCookingPreparationMode { get; set; }
         [Required]
         [DisplayName("Cooking Instructions")]
-        [StringLength(20000, MinimumLength = 10)]
+        [StringLength(2000, MinimumLength = 10)]
         [DataType(DataType.MultilineText)]
         public string CookingPreparationMode { get; set; }
         [Required]

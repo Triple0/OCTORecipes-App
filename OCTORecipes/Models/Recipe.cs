@@ -51,7 +51,7 @@ namespace OCTORecipes.Models
         public string CookingPreparationMode { get; set; }
         [Required]
         [DisplayName("Post Cooking Instructions/Serving")]
-        [StringLength(20000, MinimumLength = 50)]
+        [StringLength(2000, MinimumLength = 50)]
         [DataType(DataType.MultilineText)]
         public string PostCookingPreparationMode { get; set; }
         [DisplayName("Any Allergy Warning")]
