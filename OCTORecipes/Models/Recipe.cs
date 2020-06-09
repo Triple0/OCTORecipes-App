@@ -11,7 +11,8 @@ namespace OCTORecipes.Models
 {
     public class Recipe
     {
-
+        [DisplayName("Author")]
+        public string Author { get; set; }
         [DisplayName("Recipe Picture")]
         [Required(ErrorMessage = "Please choose recipe image")]
         public string RecipePicture { get; set; }
@@ -56,16 +57,7 @@ namespace OCTORecipes.Models
         [DisplayName("Any Allergy Warning")]
         [DataType(DataType.Text)]
         public string FoodAllergies { get; set; }
-        [DisplayName("Allergic Reactions/Symptoms")]
-        [StringLength(60, MinimumLength = 3)]
-        [DataType(DataType.Text)]
-        public string Symptoms { get; set; }
-        [DisplayName("Antidote")]
-        [StringLength(60, MinimumLength = 3)]
-        [DataType(DataType.Text)]
-        public string Antidote { get; set; }
-        [DisplayName("Recipe's Author")]
-        public string Author { get; set; }
+        
 
     }
 }

@@ -80,6 +80,7 @@ namespace OCTORecipes
                 Recipe recipe = new Recipe
                 {
                     RecipePicture = uniqueFileName,
+                    Author = User.Identity.Name,
                     RecipeId = model.RecipeId,
                     RecipeName = model.RecipeName,
                     DishType = model.DishType,
@@ -89,7 +90,6 @@ namespace OCTORecipes
                     CookingPreparationMode = model.CookingPreparationMode,
                     PostCookingPreparationMode = model.PostCookingPreparationMode,
                     FoodAllergies = model.FoodAllergies,
-                    Author = User.Identity.Name,
                 };
                 _context.Add(recipe);
                 await _context.SaveChangesAsync();

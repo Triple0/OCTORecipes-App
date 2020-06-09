@@ -16,6 +16,8 @@ namespace OCTORecipes.ViewModels
         [Key]
         [DisplayName("Recipe ID")]
         public int RecipeId { get; set; }
+        [DisplayName("Author")]
+        public string Author { get; set; }
         [DisplayName("Name of Recipe")]
         [StringLength(60, MinimumLength = 3)]
         [DataType(DataType.Text)]
@@ -50,15 +52,6 @@ namespace OCTORecipes.ViewModels
         [DisplayName("Any Allergy Warning")]
         [DataType(DataType.Text)]
         public string FoodAllergies { get; set; }
-        [DisplayName("Allergic Reactions/Symptoms")]
-        [StringLength(60, MinimumLength = 3)]
-        [DataType(DataType.Text)]
-        public string Symptoms { get; set; }
-        [DisplayName("Antidote")]
-        [StringLength(60, MinimumLength = 3)]
-        [DataType(DataType.Text)]
-        public string Antidote { get; set; }
-        [DisplayName("Author")]
-        public string Author { get; set; }
+
     }
 }
