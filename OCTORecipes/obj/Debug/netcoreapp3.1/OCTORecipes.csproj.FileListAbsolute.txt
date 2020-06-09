@@ -839,3 +839,4 @@ C:\Users\Olalekan\Documents\TechCareer\Project\OCTORecipes-App\OCTORecipes\obj\D
 C:\Users\Olalekan\Documents\TechCareer\Project\OCTORecipes-App\OCTORecipes\obj\Debug\netcoreapp3.1\Razor\Views\Recipes\Index.cshtml.g.cs
 C:\Users\Olalekan\Documents\TechCareer\Project\OCTORecipes-App\OCTORecipes\obj\Debug\netcoreapp3.1\Razor\Views\Home\About.cshtml.g.cs
 C:\Users\Olalekan\Documents\TechCareer\Project\OCTORecipes-App\OCTORecipes\obj\Debug\netcoreapp3.1\Razor\Views\Home\Contact_Us.cshtml.g.cs
+C:\Users\Olalekan\Documents\TechCareer\Project\OCTORecipes-App\OCTORecipes\obj\Debug\netcoreapp3.1\Razor\Views\ManageUsers\Index.cshtml.g.cs
