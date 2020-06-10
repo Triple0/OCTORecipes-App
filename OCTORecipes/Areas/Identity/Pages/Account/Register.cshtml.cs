@@ -48,7 +48,7 @@ namespace OCTORecipes.Areas.Identity.Pages.Account
         {
             [Required]
             [Author]
-            [Display(Name = "Author")]
+            [Display(Name = "Full Name")]
             public string Author { get; set; }
 
             [Required]

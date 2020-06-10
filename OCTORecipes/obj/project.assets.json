@@ -8932,19 +8932,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\neaky\\.nuget\\packages\\": {}
+    "C:\\Users\\Olalekan\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\taiwo\\Desktop\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
+      "projectUniqueName": "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
       "projectName": "OCTORecipes",
-      "projectPath": "C:\\Users\\taiwo\\Desktop\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
-      "packagesPath": "C:\\Users\\neaky\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\taiwo\\Desktop\\OCTORecipes-App\\OCTORecipes\\obj\\",
+      "projectPath": "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
+      "packagesPath": "C:\\Users\\Olalekan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\neaky\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Olalekan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9011,6 +9015,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.2, 3.1.2]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -9019,7 +9029,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
