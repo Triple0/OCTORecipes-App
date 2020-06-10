@@ -9,7 +9,8 @@
 <h4>Recipe</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+
+    <div class="col-md-6">
         <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -71,6 +72,11 @@
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
+    </div>
+    <div class="col-md-4">
+        <section>
+            <img class="img-fluid" src="~/img/PageImages/edit-recipe-img.jpg" alt="create Recipe." width="350" height="350" />
+        </section>
     </div>
 </div>
 

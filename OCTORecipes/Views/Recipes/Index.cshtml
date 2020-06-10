@@ -20,8 +20,8 @@
 
 <div class="table-responsive">
     <table class="table table-striped table-sm">
-        <thead>
-            <tr>
+        <thead class="thead-dark text-center">
+            <tr class="h6">
                 <th>
                     @Html.DisplayNameFor(model => model.RecipePicture)
                 </th>
@@ -32,7 +32,9 @@
                     @Html.DisplayNameFor(model => model.RecipeName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DishType)
+                    <div style="width:100px; word-wrap: break-word">
+                        @Html.DisplayNameFor(model => model.DishType)
+                    </div>
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.RecipeDescription)
@@ -59,14 +61,14 @@
                     @Html.DisplayFor(modelItem => item.DishType)
                 </td>
                 <td>
-                    <div style="width:100px; word-wrap: break-word">
+                    <div style="width:150px; word-wrap: break-word">
                         @Html.DisplayFor(modelItem => item.RecipeDescription)
                     </div>
                 </td>
 
-                <td class="small">
+                <td>
                     <a asp-action="Edit" asp-route-id="@item.RecipeId">Edit Recipe</a> |
-                    <a asp-action="Details" asp-route-id="@item.RecipeId">View Recipe Details</a> |
+                    <a asp-action="Details" asp-route-id="@item.RecipeId">View Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.RecipeId">Delete Recipe</a>
                 </td>
             </tr>

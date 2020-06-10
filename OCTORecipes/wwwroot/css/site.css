@@ -69,6 +69,7 @@ body {
   text-align: center;
   bottom: 0;
   width: 100%;
+  word-spacing: 5px;
   white-space: nowrap;
   line-height: 30px; /* Vertically center the text there */
 }

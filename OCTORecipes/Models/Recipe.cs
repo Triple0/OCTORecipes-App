@@ -17,7 +17,7 @@ namespace OCTORecipes.Models
         public string RecipePicture { get; set; }
         [NotMapped]
         [DisplayName("Upload Recipe Picture")]
-        [FileExtensions(Extensions = "jpg,png,gif,jpeg,bmp,svg")]
+       // [FileExtensions(Extensions = "jpg,png,gif,jpeg,bmp,svg")]
         [Required(ErrorMessage = "Please choose recipe image")]
         public IFormFile RecipeImage { get; set; }
         [Key]
