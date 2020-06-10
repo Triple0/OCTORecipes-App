@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj": {}
+    "C:\\Users\\Ogokweli\\Desktop\\FINAL-PROJECT\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj": {
+    "C:\\Users\\Ogokweli\\Desktop\\FINAL-PROJECT\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
+        "projectUniqueName": "C:\\Users\\Ogokweli\\Desktop\\FINAL-PROJECT\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
         "projectName": "OCTORecipes",
-        "projectPath": "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
-        "packagesPath": "C:\\Users\\Olalekan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Olalekan\\Documents\\TechCareer\\Project\\OCTORecipes-App\\OCTORecipes\\obj\\",
+        "projectPath": "C:\\Users\\Ogokweli\\Desktop\\FINAL-PROJECT\\OCTORecipes-App\\OCTORecipes\\OCTORecipes.csproj",
+        "packagesPath": "C:\\Users\\Ogokweli\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ogokweli\\Desktop\\FINAL-PROJECT\\OCTORecipes-App\\OCTORecipes\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Olalekan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ogokweli\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
