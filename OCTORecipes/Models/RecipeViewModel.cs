@@ -11,7 +11,8 @@ namespace OCTORecipes.ViewModels
     public class RecipeViewModel
     {
         [DisplayName("Recipe Picture")]
-        //[Required(ErrorMessage = "Please choose recipe image")]
+        [FileExtensions(Extensions = "jpg,png,gif,jpeg,bmp,svg")]
+        [Required(ErrorMessage = "Please choose recipe image")]
         public IFormFile RecipeImage { get; set; }
         [Key]
         [DisplayName("Recipe ID")]

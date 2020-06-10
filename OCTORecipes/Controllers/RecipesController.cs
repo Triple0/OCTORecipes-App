@@ -137,7 +137,7 @@ namespace OCTORecipes
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RecipeImage,RecipeId,RecipeName,DishType,RecipeDescription,Ingredients,PreCookingPreparationMode,CookingPreparationMode,PostCookingPreparationMode,FoodAllergies,Symptoms,Antidote,Author")] RecipeViewModel model)
+        public async Task<IActionResult> Edit(int id, Recipe recipe, RecipeViewModel model)//[Bind("RecipeImage,RecipeId,RecipeName,DishType,RecipeDescription,Ingredients,PreCookingPreparationMode,CookingPreparationMode,PostCookingPreparationMode,FoodAllergies,Symptoms,Antidote,Author")] RecipeViewModel model)
         {
 
             var recipeContext = await _context.Recipe.FindAsync(id);
@@ -150,21 +150,39 @@ namespace OCTORecipes
 
             if (ModelState.IsValid)
             {
+                
                 try
                 {
-                   
-
-                    string uniqueFileName = UploadedFile(model);                 
-                                                
-                                               
-                        _context.Update(model);
-                        await _context.SaveChangesAsync();
-                        
+                    string uniqueFileName = null;
+                    if (model.RecipeImage == null)
+                    {
+                        uniqueFileName = UploadedFile(model);
                         // Deleting old image from file folder
-                        var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "images", "recipe_images", Image);
-                        if (System.IO.File.Exists(imagePath))
-                            System.IO.File.Delete(imagePath);
+                        //var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "images", "recipe_images", Image);
+                        //if (System.IO.File.Exists(imagePath))
+                          //  System.IO.File.Delete(imagePath);
+                    } else
+                    {
+                        uniqueFileName = recipeContext.RecipePicture;
+                    }
+                    Recipe recipe1 = new Recipe
+                    {
+                        
+                        RecipePicture = uniqueFileName,
+                        RecipeId = model.RecipeId,
+                        RecipeName = model.RecipeName,
+                        DishType = model.DishType,
+                        RecipeDescription = model.RecipeDescription,
+                        Ingredients = model.Ingredients,
+                        PreCookingPreparationMode = model.PreCookingPreparationMode,
+                        CookingPreparationMode = model.CookingPreparationMode,
+                        PostCookingPreparationMode = model.PostCookingPreparationMode,
+                        FoodAllergies = model.FoodAllergies,
+                        Author = User.Identity.Name,
+                    };
 
+                        _context.Update(recipe1);
+                        await _context.SaveChangesAsync();  
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -179,7 +197,7 @@ namespace OCTORecipes
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(model);
+            return View(recipe);
         }
 
         // GET: Recipes/Delete/5
