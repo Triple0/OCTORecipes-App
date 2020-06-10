@@ -2,7 +2,7 @@
 
 
 **Name of Project: OCTORecipes**
-**OCTO - Oluwatoyin Charles Taiwo Olalekan**
+**(OCTO - Oluwatoyin Charles Taiwo Olalekan)**
 
 **Contributors/Authors: Taiwo Adeniji, Oluwatoyin Iyaomolere, Olalekan Olapeju, and Charles Onyekweli**
 
