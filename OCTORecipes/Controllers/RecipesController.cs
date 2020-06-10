@@ -88,9 +88,7 @@ namespace OCTORecipes
                     PreCookingPreparationMode = model.PreCookingPreparationMode,
                     CookingPreparationMode = model.CookingPreparationMode,
                     PostCookingPreparationMode = model.PostCookingPreparationMode,
-                    FoodAllergies = model.FoodAllergies,
-                    Symptoms = model.Symptoms,
-                    Antidote = model.Antidote,
+                    FoodAllergies = model.FoodAllergies,                   
                     Author = User.Identity.Name,
                 };
                 _context.Add(recipe);
@@ -109,10 +107,9 @@ namespace OCTORecipes
                 string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images", "recipe_images");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + model.RecipeImage.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
+                using var fileStream = new FileStream(filePath, FileMode.Create);                
                     model.RecipeImage.CopyTo(fileStream);
-                }
+                
             }
             return uniqueFileName;
 
