@@ -1,7 +1,9 @@
-﻿@model IEnumerable<OCTORecipes.Models.Recipe>
+﻿@using System.IO;
+@model IEnumerable<OCTORecipes.Models.Recipe>
 
 @{
     ViewData["Title"] = "Recipe Page";
+   
 }
 
 <h1>Recipes</h1>
@@ -47,7 +49,7 @@
             @foreach (var item in Model)
             {
             <tr>
-                <td>
+                <td>                   
                     <!--https://forums.asp.net/t/2147423.aspx?upload+and+display+image+from+database+for+asp+net+core+2+1+-->
                     <img src="@Url.Content("~/images/recipe_images/"+item.RecipePicture)" alt="Recipe Image" height="100" width="100" />
                 </td>

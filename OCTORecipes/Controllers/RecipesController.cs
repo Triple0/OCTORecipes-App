@@ -73,9 +73,20 @@ namespace OCTORecipes
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RecipeViewModel model)//[Bind("RecipePicture,RecipeId,RecipeName,DishType,RecipeDescription,Ingredients,PreCookingPreparationMode,CookingPreparationMode,PostCookingPreparationMode,FoodAllergies,Symptoms,Antidote,Author")] Recipe recipe)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) //397b8088-e7e9-45dc-937a-4dc2d471e109_default_image_placeholder.jpg
             {
-                string uniqueFileName = UploadedFile(model);
+                //string uniqueFileName = UploadedFile(model);
+                string uniqueFileName = null;
+                if (uniqueFileName != null)
+                {
+                    // Handles uploading of new images
+                    uniqueFileName = UploadedFile(model);
+                }
+                else
+                {
+                    // Handles retaining old images if user wishes not to change the initial image
+                    uniqueFileName = UploadedPlaceholderFile(model);
+                }
 
                 Recipe recipe = new Recipe
                 {
@@ -98,6 +109,7 @@ namespace OCTORecipes
             return View();
         }
 
+        // A private method to handle uploading of images for both create and edit methods
         private string UploadedFile(RecipeViewModel model)
         {
             string uniqueFileName = null;
@@ -112,9 +124,24 @@ namespace OCTORecipes
                 
             }
             return uniqueFileName;
-
         }
 
+        private string UploadedPlaceholderFile(RecipeViewModel model)
+        {
+            string uniqueFileName = null;
+            string fileName = "default_image_placeholder.jpg";
+
+            if (model.RecipeImage == null)
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images", "recipe_images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + fileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                //model.RecipeImage.CopyTo(fileStream);
+            }
+            return uniqueFileName;
+
+        }
 
         // GET: Recipes/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -139,7 +166,7 @@ namespace OCTORecipes
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Recipe recipe, RecipeViewModel model)//[Bind("RecipeImage,RecipeId,RecipeName,DishType,RecipeDescription,Ingredients,PreCookingPreparationMode,CookingPreparationMode,PostCookingPreparationMode,FoodAllergies,Symptoms,Antidote,Author")] RecipeViewModel model)
         {
-            
+            // Get old image from the database
             var recipeContext = await _context.Recipe.FindAsync(id);
 
             // Reference: https://stackoverflow.com/questions/48117961/the-instance-of-entity-type-cannot-be-tracked-because-another-instance-of-th/48132201#48132201
@@ -157,9 +184,21 @@ namespace OCTORecipes
                 
                 try
                 {
-                    string uniqueFileName = UploadedFile(model);
+
+                    
+                    var uniqueFileName = "";
+                    if (recipe.RecipeImage != null)
+                    {
+                        // Handles uploading of new images
+                        uniqueFileName = UploadedFile(model); 
+                    }
+                    else
+                    {
+                        // Handles retaining old images if user wishes not to change the initial image
+                        uniqueFileName = recipeContext.RecipePicture;
+                    }
                   
-                                   
+                    // Create a new edit to be inputted into the databasse               
                     Recipe recipe1 = new Recipe
                     {
                         
@@ -180,9 +219,13 @@ namespace OCTORecipes
                         await _context.SaveChangesAsync();
 
                     // Deleting old image from file folder
-                    var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "images", "recipe_images", Image);
-                    if (System.IO.File.Exists(imagePath))
-                        System.IO.File.Delete(imagePath);
+                    if (uniqueFileName != null)
+                    {
+                        var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "images", "recipe_images", Image);
+                        if (System.IO.File.Exists(imagePath))
+                            System.IO.File.Delete(imagePath);
+                    }
+                    
                 }
                 catch (DbUpdateConcurrencyException)
                 {
