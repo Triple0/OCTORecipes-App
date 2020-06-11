@@ -139,8 +139,12 @@ namespace OCTORecipes
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Recipe recipe, RecipeViewModel model)//[Bind("RecipeImage,RecipeId,RecipeName,DishType,RecipeDescription,Ingredients,PreCookingPreparationMode,CookingPreparationMode,PostCookingPreparationMode,FoodAllergies,Symptoms,Antidote,Author")] RecipeViewModel model)
         {
-
+            
             var recipeContext = await _context.Recipe.FindAsync(id);
+
+            // Reference: https://stackoverflow.com/questions/48117961/the-instance-of-entity-type-cannot-be-tracked-because-another-instance-of-th/48132201#48132201
+            _context.Entry(recipeContext).State = EntityState.Detached;
+            
             string Image = recipeContext.RecipePicture.ToString();            
 
             if (id != model.RecipeId)
@@ -153,18 +157,9 @@ namespace OCTORecipes
                 
                 try
                 {
-                    string uniqueFileName = null;
-                    if (model.RecipeImage == null)
-                    {
-                        uniqueFileName = UploadedFile(model);
-                        // Deleting old image from file folder
-                        //var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "images", "recipe_images", Image);
-                        //if (System.IO.File.Exists(imagePath))
-                          //  System.IO.File.Delete(imagePath);
-                    } else
-                    {
-                        uniqueFileName = recipeContext.RecipePicture;
-                    }
+                    string uniqueFileName = UploadedFile(model);
+                  
+                                   
                     Recipe recipe1 = new Recipe
                     {
                         
@@ -182,7 +177,12 @@ namespace OCTORecipes
                     };
 
                         _context.Update(recipe1);
-                        await _context.SaveChangesAsync();  
+                        await _context.SaveChangesAsync();
+
+                    // Deleting old image from file folder
+                    var imagePath = Path.Combine(webHostEnvironment.WebRootPath, "images", "recipe_images", Image);
+                    if (System.IO.File.Exists(imagePath))
+                        System.IO.File.Delete(imagePath);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
